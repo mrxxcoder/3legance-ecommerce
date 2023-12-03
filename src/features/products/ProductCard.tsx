@@ -5,7 +5,7 @@ import ButtonIcon from "../../ui/ButtonIcon";
 
 function ProductCard() {
   return (
-    <div className="w-[231px] md:w-[262px] flex flex-col space-y-3">
+    <div className="flex flex-col space-y-3">
       <div className="relative group">
         <div className="flex flex-col justify-between absolute w-full h-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <div className="flex items-center justify-between">
@@ -20,10 +20,10 @@ function ProductCard() {
           </div>
 
           <div className="self-center">
-            <Button>Add to cart</Button>
+            <Button width="w-full">Add to cart</Button>
           </div>
         </div>
-        <img src={Headphone1} />
+        <img src={Headphone1} className="w-full" />
       </div>
       <div className="flex flex-col space-y-3">
         <h2 className="text-lg font-semibold">

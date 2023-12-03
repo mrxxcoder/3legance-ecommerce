@@ -12,7 +12,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <ProductsLayout />
+      <ProductsLayout title="New Arrivals" />
       <CollectionsLayout />
       <BestSeller />
       <Promotion />

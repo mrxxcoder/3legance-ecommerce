@@ -4,7 +4,7 @@ import { RiYoutubeLine } from "react-icons/ri";
 
 function Footer() {
   return (
-    <div className="bg-[#141718] text-white px-16 py-28 space-y-32">
+    <div className="bg-[#141718] text-white p-16 space-y-28">
       <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <h1 className="text-3xl font-semibold lg:border-r lg:border-r-gray-500 lg:pr-12">

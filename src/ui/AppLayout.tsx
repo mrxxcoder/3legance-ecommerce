@@ -1,10 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 
 function AppLayout() {
+  const location = useLocation();
+  let navbarBackgroundColor = "#FECA5A";
+
+  if (location.pathname === "/shop") {
+    navbarBackgroundColor = "white";
+  }
   return (
     <div>
-      <Navbar backgroundColor="#FECA5A" />
+      <Navbar backgroundColor={navbarBackgroundColor} />
       <main>
         <Outlet />
       </main>
