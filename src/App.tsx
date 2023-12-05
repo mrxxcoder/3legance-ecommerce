@@ -13,7 +13,7 @@ function App() {
           <Route index element={<Navigate replace to="home" />} />
           <Route path="home" element={<Home />} />
           <Route path="shop" element={<Products />} />
-          <Route path="products/:productId" element={<Product />} />
+          <Route path="shop/:productId" element={<Product />} />
           <Route path="cart" element={<Cart />} />
         </Route>
       </Routes>

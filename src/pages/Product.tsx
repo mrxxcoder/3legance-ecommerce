@@ -1,5 +1,11 @@
+import ProductLayout from "../ui/ProductLayout";
+
 function Product() {
-  return <div>Product X</div>;
+  return (
+    <div>
+      <ProductLayout />
+    </div>
+  );
 }
 
 export default Product;

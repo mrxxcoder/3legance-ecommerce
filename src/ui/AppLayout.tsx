@@ -3,10 +3,10 @@ import Navbar from "./Navbar";
 
 function AppLayout() {
   const location = useLocation();
-  let navbarBackgroundColor = "#FECA5A";
+  let navbarBackgroundColor = "transparent";
 
-  if (location.pathname === "/shop") {
-    navbarBackgroundColor = "white";
+  if (location.pathname === "/home") {
+    navbarBackgroundColor = "#FECA5A";
   }
   return (
     <div>

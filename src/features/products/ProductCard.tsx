@@ -7,7 +7,7 @@ function ProductCard() {
   return (
     <div className="flex flex-col space-y-3">
       <div className="relative group">
-        <div className="flex flex-col justify-between absolute w-full h-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex flex-col justify-between absolute z-10 w-full h-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <div className="flex items-center justify-between">
             <span className="uppercase text-sm bg-white rounded-md font-semibold py-[1px] px-4 block">
               new
