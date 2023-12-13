@@ -5,6 +5,7 @@ import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import EmptyCart from "./EmptyCart";
 interface IProps {
   flyoutCartOpen: boolean;
   setFlyoutCartOpen: (value: boolean) => void;
@@ -12,6 +13,7 @@ interface IProps {
 
 function FlyoutCart({ flyoutCartOpen, setFlyoutCartOpen }: IProps) {
   const products = useSelector((state: RootState) => state.cart.products);
+
   const navigate = useNavigate();
   return (
     <div
@@ -25,32 +27,38 @@ function FlyoutCart({ flyoutCartOpen, setFlyoutCartOpen }: IProps) {
           <HiMiniXMark size={26} />
         </ButtonIcon>
       </div>
-      <div>
-        {products.map((product) => (
-          <CartItem product={product} key={product.id} />
-        ))}
-      </div>
-      <div className="mt-auto space-y-6 md:space-y-8">
-        <div className="flex items-center justify-between mt-4">
-          <h3 className="text-xl md:text-2xl font-medium">Total</h3>
-          <p className="text-xl md:text-2xl font-medium">$234.00</p>
-        </div>
-        <div className="flex flex-col items-center gap-2">
-          <Button width="w-full" variant="primary">
-            Checkout
-          </Button>
-          <Button
-            width="w-fit"
-            variant="outline"
-            onClick={() => {
-              navigate("/cart");
-              setFlyoutCartOpen(false);
-            }}
-          >
-            View Cart
-          </Button>
-        </div>
-      </div>
+      {products.length === 0 ? (
+        <EmptyCart className="mt-24" />
+      ) : (
+        <>
+          <div>
+            {products.map((product) => (
+              <CartItem product={product} key={product.id} />
+            ))}
+          </div>
+          <div className="mt-auto space-y-6 md:space-y-8">
+            <div className="flex items-center justify-between mt-4">
+              <h3 className="text-xl md:text-2xl font-medium">Total</h3>
+              <p className="text-xl md:text-2xl font-medium">$234.00</p>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <Button width="w-full" variant="primary">
+                Checkout
+              </Button>
+              <Button
+                width="w-fit"
+                variant="outline"
+                onClick={() => {
+                  navigate("/cart");
+                  setFlyoutCartOpen(false);
+                }}
+              >
+                View Cart
+              </Button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 }

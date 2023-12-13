@@ -2,9 +2,17 @@ import { useSelector } from "react-redux";
 import Button from "./Button";
 import CartItem from "./CartItem";
 import { RootState } from "../store/store";
+import EmptyCart from "./EmptyCart";
 
 function CartLayout() {
   const products = useSelector((state: RootState) => state.cart.products);
+
+  if (products.length === 0) {
+    return (
+      <EmptyCart className="mx-auto container p-8 md:p-0 w-[20rem] md:w-[30rem]" />
+    );
+  }
+
   return (
     <div className="container mx-auto grid grid-cols-[1fr_32rem] gap-16">
       <div className="">
