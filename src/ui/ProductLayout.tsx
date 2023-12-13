@@ -1,32 +1,48 @@
-import thumbnail2 from "../assets/images/product-thmbnail2.png";
-import gallery1 from "../assets/images/gallery-1.png";
-import gallery2 from "../assets/images/gallery-2.png";
-import gallery3 from "../assets/images/gallery-3.png";
 import { HiOutlineHeart } from "react-icons/hi2";
 import Button from "./Button";
+import { useProduct } from "../features/products/useProduct";
+import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
 
-interface IProps {}
+function ProductLayout() {
+  const { data: product, isLoading } = useProduct();
 
-function ProductLayout({}: IProps) {
+  if (isLoading || !product) {
+    return <ProductDetailsSkeleton />;
+  }
+
   return (
     <div className="container mx-auto flex flex-col md:flex-row gap-16 my-16 p-8">
       <div className="space-y-4">
-        <img src={thumbnail2} alt="product image" />
-        <div className="gap-4 hidden md:flex">
-          <img src={gallery1} alt="subimage" className="w-full" />
-          <img src={gallery2} alt="subimage" className="w-full" />
-          <img src={gallery3} alt="subimage" className="w-full" />
+        <div className="bg-[#F3F5F7]">
+          <img
+            src={product.images[0]}
+            alt={product.title}
+            className="max-w-full md:max-w-[548px] mix-blend-multiply"
+          />
+        </div>
+        <div className="gap-4 hidden md:flex md:justify-between bg-[#F3F5F7]">
+          <img
+            src={product.images[0]}
+            alt={product.title}
+            className="max-w-[167px] shadow-sm hover:border hover:border-black transition mix-blend-multiply"
+          />
+          <img
+            src={product.images[1]}
+            alt={product.title}
+            className="max-w-[167px] shadow-sm hover:border hover:border-black transition mix-blend-multiply"
+          />
+          <img
+            src={product.images[2]}
+            alt={product.title}
+            className="max-w-[167px] shadow-sm hover:border hover:border-black transition mix-blend-multiply"
+          />
         </div>
       </div>
       <div className="space-y-6 max-w-[36rem]">
-        <h2 className="text-4xl font-medium">Skullcandy</h2>
-        <p className="text-md text-gray-500">
-          Buy one or buy a few and make every space where you sit more
-          convenient. Light and easy to move around with removable tray top,
-          handy for serving snacks.
-        </p>
+        <h2 className="text-4xl font-medium">{product.title}</h2>
+        <p className="text-md text-gray-500">{product.description}</p>
         <div className="flex items-center space-x-3">
-          <span className="text-2xl font-medium">$199.00</span>
+          <span className="text-2xl font-medium">${product.price}</span>
           <span className="text-xl font-medium text-gray-500 line-through">
             $400.00
           </span>

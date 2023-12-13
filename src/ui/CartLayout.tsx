@@ -1,15 +1,16 @@
+import { useSelector } from "react-redux";
 import Button from "./Button";
 import CartItem from "./CartItem";
+import { RootState } from "../store/store";
 
-interface IProps {}
-
-function CartLayout({}: IProps) {
+function CartLayout() {
+  const products = useSelector((state: RootState) => state.cart.products);
   return (
     <div className="container mx-auto grid grid-cols-[1fr_32rem] gap-16">
       <div className="">
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {products.map((product) => (
+          <CartItem product={product} key={product.id} />
+        ))}
       </div>
       <div className="border border-gray-700 rounded-xl p-6 space-y-6">
         <h2 className="text-2xl font-medium">Cart Summary</h2>

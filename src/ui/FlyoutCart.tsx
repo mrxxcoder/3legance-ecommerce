@@ -3,16 +3,19 @@ import ButtonIcon from "./ButtonIcon";
 import CartItem from "./CartItem";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 interface IProps {
   flyoutCartOpen: boolean;
   setFlyoutCartOpen: (value: boolean) => void;
 }
 
 function FlyoutCart({ flyoutCartOpen, setFlyoutCartOpen }: IProps) {
+  const products = useSelector((state: RootState) => state.cart.products);
   const navigate = useNavigate();
   return (
     <div
-      className={`bg-white h-screen w-[45vh] fixed right-0 top-0 px-8 py-12 transition-all z-30 flex flex-col flyout-cart ${
+      className={`bg-white h-screen overflow-y-scroll w-[45vh] fixed right-0 top-0 px-8 py-12 transition-all z-30 flex flex-col flyout-cart ${
         flyoutCartOpen ? "open" : ""
       }`}
     >
@@ -23,9 +26,9 @@ function FlyoutCart({ flyoutCartOpen, setFlyoutCartOpen }: IProps) {
         </ButtonIcon>
       </div>
       <div>
-        <CartItem />
-        <CartItem />
-        <CartItem />
+        {products.map((product) => (
+          <CartItem product={product} key={product.id} />
+        ))}
       </div>
       <div className="mt-auto space-y-6 md:space-y-8">
         <div className="flex items-center justify-between mt-4">

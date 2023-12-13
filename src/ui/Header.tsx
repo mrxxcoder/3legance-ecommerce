@@ -9,7 +9,9 @@ function Header() {
           sound.
         </h2>
         <p className="text-2xl">Experience music like never before</p>
-        <Button>Shop now</Button>
+        <Button width="w-fit" variant="primary">
+          Shop now
+        </Button>
       </div>
     </div>
   );
