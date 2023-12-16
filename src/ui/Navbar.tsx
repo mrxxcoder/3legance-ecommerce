@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 import { HiOutlineUserCircle } from "react-icons/hi2";
 import { HiBars3 } from "react-icons/hi2";
@@ -6,6 +6,8 @@ import Menu from "./Menu";
 import { useState } from "react";
 import ButtonIcon from "./ButtonIcon";
 import FlyoutCart from "./FlyoutCart";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 interface IProps {
   backgroundColor: string;
@@ -14,6 +16,9 @@ interface IProps {
 function Navbar({ backgroundColor = "transparent" }: IProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [flyoutCartOpen, setFlyoutCartOpen] = useState(false);
+  const products = useSelector((state: RootState) => state.cart.products);
+  const navigate = useNavigate();
+
   return (
     <nav style={{ backgroundColor: backgroundColor }} className="relative">
       <div className="container mx-auto py-4 px-8 md:px-0 flex items-center justify-between">
@@ -38,8 +43,18 @@ function Navbar({ backgroundColor = "transparent" }: IProps) {
         </ul>
 
         <div className="flex items-center gap-4">
-          <HiOutlineUserCircle size={28} />
-          <ButtonIcon onClick={() => setFlyoutCartOpen(true)}>
+          <ButtonIcon onClick={() => navigate("/account")}>
+            <HiOutlineUserCircle size={28} />
+          </ButtonIcon>
+          <ButtonIcon
+            className="relative"
+            onClick={() => setFlyoutCartOpen(true)}
+          >
+            {products.length > 0 && (
+              <span className="absolute -right-[22px] top-0.5 text-white w-5 h-5 rounded-full bg-black flex items-center justify-center text-xs font-medium">
+                {products.length}
+              </span>
+            )}
             <HiOutlineShoppingBag size={24} />
           </ButtonIcon>
         </div>

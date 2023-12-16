@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import EmptyCart from "./EmptyCart";
+import { calculateTotalPrice } from "../utils";
 interface IProps {
   flyoutCartOpen: boolean;
   setFlyoutCartOpen: (value: boolean) => void;
@@ -39,7 +40,9 @@ function FlyoutCart({ flyoutCartOpen, setFlyoutCartOpen }: IProps) {
           <div className="mt-auto space-y-6 md:space-y-8">
             <div className="flex items-center justify-between mt-4">
               <h3 className="text-xl md:text-2xl font-medium">Total</h3>
-              <p className="text-xl md:text-2xl font-medium">$234.00</p>
+              <p className="text-xl md:text-2xl font-medium">
+                ${calculateTotalPrice(products).toFixed(2)}
+              </p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <Button width="w-full" variant="primary">

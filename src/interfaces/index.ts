@@ -7,3 +7,9 @@ export interface IProduct {
   discount: number;
   quantity: number;
 }
+
+export interface ICollection {
+  id: number;
+  title: string;
+  image: string;
+}

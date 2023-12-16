@@ -3,6 +3,7 @@ import Button from "./Button";
 import CartItem from "./CartItem";
 import { RootState } from "../store/store";
 import EmptyCart from "./EmptyCart";
+import { calculateTotalPrice } from "../utils";
 
 function CartLayout() {
   const products = useSelector((state: RootState) => state.cart.products);
@@ -75,7 +76,9 @@ function CartLayout() {
 
         <div className="flex items-center justify-between border-t border-t-gray-300 py-4">
           <h3 className="text-xl md:text-2xl font-medium">Total</h3>
-          <p className="text-xl md:text-2xl font-medium">$234.00</p>
+          <p className="text-xl md:text-2xl font-medium">
+            ${calculateTotalPrice(products).toFixed(2)}
+          </p>
         </div>
 
         <div>

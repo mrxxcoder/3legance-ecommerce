@@ -6,6 +6,10 @@ import Cart from "./pages/Cart";
 import AppLayout from "./ui/AppLayout";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import Account from "./pages/Account";
+import Orders from "./ui/Orders";
+import Wishlist from "./ui/Wishlist";
+import AccountForm from "./ui/AccountForm";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,6 +31,11 @@ function App() {
             <Route path="shop" element={<Products />} />
             <Route path="shop/:productId" element={<Product />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="account" element={<Account />}>
+              <Route index path="/account/details" element={<AccountForm />} />
+              <Route path="/account/orders" element={<Orders />} />
+              <Route path="/account/wishlist" element={<Wishlist />} />
+            </Route>
           </Route>
         </Routes>
       </BrowserRouter>
