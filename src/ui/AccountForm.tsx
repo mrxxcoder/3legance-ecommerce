@@ -1,9 +1,7 @@
 import Button from "./Button";
 import FormRow from "./FormRow";
 
-interface IProps {}
-
-function AccountForm({}: IProps) {
+function AccountForm() {
   return (
     <div>
       <form action="" className="space-y-5">

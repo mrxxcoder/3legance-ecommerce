@@ -1,6 +1,4 @@
-interface IProps {}
-
-function ShopFilter({}: IProps) {
+function ShopFilter() {
   return (
     <div className="px-8 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4 container mx-auto mt-16">
       <div className="flex flex-col">
@@ -16,9 +14,9 @@ function ShopFilter({}: IProps) {
           value="headphones"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 py-2.5 pl-2 pr-24"
         >
-          <option value="headphones">Headphones</option>
-          <option value="earbuds">Earbuds</option>
-          <option value="accessories">Accessories</option>
+          <option defaultValue="headphones">Headphones</option>
+          <option defaultValue="earbuds">Earbuds</option>
+          <option defaultValue="accessories">Accessories</option>
         </select>
       </div>
 

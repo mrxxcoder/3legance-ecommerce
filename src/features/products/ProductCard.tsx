@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { addProduct } from "../../store/cart/cartSlice";
+import { addItem } from "../../store/wishlist/wishlistSlice";
 
 interface IProps {
   product: IProduct;
@@ -25,7 +26,10 @@ function ProductCard({ product }: IProps) {
               new
             </span>
             <div className="flex space-x-1">
-              <ButtonIcon className="bg-white p-2 rounded-full shadow-md">
+              <ButtonIcon
+                className="bg-white p-2 rounded-full shadow-md"
+                onClick={() => dispatch(addItem(product))}
+              >
                 <HiOutlineHeart size={20} />
               </ButtonIcon>
 
