@@ -10,6 +10,11 @@ import Account from "./pages/Account";
 import AccountForm from "./ui/AccountForm";
 import WishlistTable from "./features/wishlist/WishlistTable";
 import OrdersTable from "./features/orders/OrdersTable";
+import Checkout from "./pages/Checkout";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
+import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,7 +36,23 @@ function App() {
             <Route path="shop" element={<Products />} />
             <Route path="shop/:productId" element={<Product />} />
             <Route path="cart" element={<Cart />} />
-            <Route path="account" element={<Account />}>
+
+            <Route
+              path="checkout"
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="account"
+              element={
+                <ProtectedRoute>
+                  <Account />
+                </ProtectedRoute>
+              }
+            >
               <Route
                 index
                 element={<Navigate replace to="/account/details" />}
@@ -41,8 +62,30 @@ function App() {
               <Route path="/account/wishlist" element={<WishlistTable />} />
             </Route>
           </Route>
+          <Route path="signup" element={<Signup />} />
+          <Route path="signin" element={<Signin />} />
         </Routes>
       </BrowserRouter>
+      <Toaster
+        position="top-center"
+        gutter={12}
+        containerStyle={{ margin: "8px" }}
+        toastOptions={{
+          success: {
+            duration: 3000,
+          },
+          error: {
+            duration: 5000,
+          },
+          style: {
+            fontSize: "16px",
+            maxWidth: "500px",
+            padding: "16px 24px",
+            backgroundColor: "white",
+            color: "black",
+          },
+        }}
+      />
     </QueryClientProvider>
   );
 }

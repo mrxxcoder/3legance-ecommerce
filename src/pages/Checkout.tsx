@@ -1,5 +1,11 @@
+import CheckoutLayout from "../features/checkout/CheckoutLayout";
+
 function Checkout() {
-  return <div>Checkout</div>;
+  return (
+    <div>
+      <CheckoutLayout />
+    </div>
+  );
 }
 
 export default Checkout;

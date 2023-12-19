@@ -3,6 +3,7 @@ import profile from "../assets/images/profile.jpg";
 import Button from "./Button";
 import ButtonIcon from "./ButtonIcon";
 import { HiOutlineCamera } from "react-icons/hi2";
+import Logout from "../features/authentication/Logout";
 
 function AccountNavigation() {
   return (
@@ -48,9 +49,7 @@ function AccountNavigation() {
           </NavLink>
         </li>
         <li>
-          <Button variant="primary" width="w-full">
-            Logout
-          </Button>
+          <Logout />
         </li>
       </ul>
     </div>

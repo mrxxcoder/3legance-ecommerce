@@ -4,9 +4,11 @@ import CartItem from "./CartItem";
 import { RootState } from "../store/store";
 import EmptyCart from "./EmptyCart";
 import { calculateTotalPrice } from "../utils";
+import { useNavigate } from "react-router-dom";
 
 function CartLayout() {
   const products = useSelector((state: RootState) => state.cart.products);
+  const navigate = useNavigate();
 
   if (products.length === 0) {
     return (
@@ -82,7 +84,12 @@ function CartLayout() {
         </div>
 
         <div>
-          <Button width="w-full" variant="primary">
+          <Button
+            width="w-full"
+            variant="primary"
+            onClick={() => navigate("/checkout")}
+            disabled={products.length === 0}
+          >
             Checkout
           </Button>
         </div>
