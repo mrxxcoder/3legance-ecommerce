@@ -3,9 +3,10 @@ import { ReactNode } from "react";
 interface IProps {
   label: string;
   children: ReactNode;
+  error?: string;
 }
 
-function FormRow({ label, children }: IProps) {
+function FormRow({ label, children, error }: IProps) {
   return (
     <div className="flex flex-col space-y-1">
       <label
@@ -15,6 +16,7 @@ function FormRow({ label, children }: IProps) {
         {label}
       </label>
       {children}
+      {error && <span className="text-md text-red-500">{error}</span>}
     </div>
   );
 }
