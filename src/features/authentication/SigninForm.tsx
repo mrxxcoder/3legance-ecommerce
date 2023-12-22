@@ -4,6 +4,7 @@ import Button from "../../ui/Button";
 import React, { useState } from "react";
 import { useLogin } from "./useLogin";
 import Spinner from "../../ui/Spinner";
+import Input from "../../ui/Input";
 
 interface IProps {}
 
@@ -36,23 +37,21 @@ function SigninForm({}: IProps) {
       </p>
       <form className="space-y-6" onSubmit={handleSubmit}>
         <FormRow label="Email address">
-          <input
+          <Input
             disabled={isLoading}
             type="email"
             placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
           />
         </FormRow>
         <FormRow label="Password">
-          <input
+          <Input
             disabled={isLoading}
             type="password"
             placeholder="Username"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
           />
         </FormRow>
         <Button variant="primary" width="w-full" disabled={isLoading}>

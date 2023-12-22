@@ -7,5 +7,7 @@ export function useCollections() {
     queryKey: ["collections"],
   });
 
+  console.log(collections);
+
   return { collections, isLoading };
 }

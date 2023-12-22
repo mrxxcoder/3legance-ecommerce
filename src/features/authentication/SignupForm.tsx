@@ -4,6 +4,7 @@ import Button from "../../ui/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSignup } from "./useSignup";
 import Spinner from "../../ui/Spinner";
+import Input from "../../ui/Input";
 
 // Email regex: /\S+@\S+\.\S+/
 
@@ -33,23 +34,21 @@ function SignupForm() {
       </p>
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <FormRow label="Your name" error={errors?.name?.message}>
-          <input
+          <Input
             type="text"
             disabled={isLoading}
             id="name"
             placeholder="Your name"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
             {...register("name", { required: "This field is required" })}
           />
         </FormRow>
 
         <FormRow label="Email address" error={errors?.email?.message}>
-          <input
+          <Input
             type="email"
             disabled={isLoading}
             id="email"
             placeholder="Email address"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
             {...register("email", {
               required: "This field is required",
               pattern: {
@@ -60,12 +59,11 @@ function SignupForm() {
           />
         </FormRow>
         <FormRow label="Password" error={errors?.password?.message}>
-          <input
+          <Input
             type="password"
             disabled={isLoading}
             id="password"
             placeholder="Password"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
             {...register("password", {
               required: "This field is required",
               minLength: {

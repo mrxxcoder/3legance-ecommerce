@@ -1,5 +1,6 @@
 import Button from "../../ui/Button";
 import FormRow from "../../ui/FormRow";
+import Input from "../../ui/Input";
 
 function CheckoutForm() {
   return (
@@ -8,74 +9,38 @@ function CheckoutForm() {
         <h2 className="text-xl font-semibold">Contact Information</h2>
         <div className="flex gap-6 flex-wrap">
           <FormRow label="First name">
-            <input
-              type="text"
-              placeholder="First name"
-              className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-            />
+            <Input type="text" placeholder="First name" />
           </FormRow>
           <FormRow label="Last name">
-            <input
-              type="text"
-              placeholder="Last name"
-              className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-            />
+            <Input type="text" placeholder="Last name" />
           </FormRow>
         </div>
         <FormRow label="Phone number">
-          <input
-            type="number"
-            placeholder="Phone number"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-          />
+          <Input type="number" placeholder="Phone number" />
         </FormRow>
         <FormRow label="Email address">
-          <input
-            type="email"
-            placeholder="Email address"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-          />
+          <Input type="email" placeholder="Email address" />
         </FormRow>
       </div>
 
       <div className="border border-gray-700 rounded-xl p-6 space-y-6">
         <h2 className="text-xl font-semibold">Shipping Address</h2>
         <FormRow label="Street address">
-          <input
-            type="text"
-            placeholder="Street address"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-          />
+          <Input type="text" placeholder="Street address" />
         </FormRow>
         <FormRow label="Country">
-          <input
-            type="text"
-            placeholder="Country"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-          />
+          <Input type="text" placeholder="Country" />
         </FormRow>
 
         <FormRow label="Town/City">
-          <input
-            type="text"
-            placeholder="Town/City"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-          />
+          <Input type="text" placeholder="Town/City" />
         </FormRow>
         <div className="flex gap-6 flex-wrap">
           <FormRow label="State">
-            <input
-              type="text"
-              placeholder="State"
-              className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-            />
+            <Input type="text" placeholder="State" />
           </FormRow>
           <FormRow label="Zip code">
-            <input
-              type="number"
-              placeholder="Zip code"
-              className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-            />
+            <Input type="number" placeholder="Zip code" />
           </FormRow>
         </div>
       </div>
@@ -83,27 +48,15 @@ function CheckoutForm() {
       <div className="border border-gray-700 rounded-xl p-6 space-y-6">
         <h2 className="text-xl font-semibold">Payment Information</h2>
         <FormRow label="Card number">
-          <input
-            type="number"
-            placeholder="1234 1234 1234 1234"
-            className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-          />
+          <Input type="number" placeholder="1234 1234 1234 1234" />
         </FormRow>
         <div className="flex gap-6 flex-wrap">
           <FormRow label="Expiration date">
-            <input
-              type="text"
-              placeholder="Expiration date"
-              className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-            />
+            <Input type="text" placeholder="Expiration date" />
           </FormRow>
 
           <FormRow label="CVC">
-            <input
-              type="number"
-              placeholder="CVC code"
-              className="border border-gray-300 rounded-md px-2 py-1.5 outline-none focus:border-gray-500"
-            />
+            <Input type="number" placeholder="CVC code" />
           </FormRow>
         </div>
       </div>
