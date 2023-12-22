@@ -1,8 +1,10 @@
-import { useQuery } from "react-query";
+import { useQuery, useQueryClient } from "react-query";
 import { getProducts } from "../../services/apiProducts";
 import { useSearchParams } from "react-router-dom";
+import { PAGE_SIZE } from "../../utils";
 
 export function useProducts() {
+  const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
   //FILTER
@@ -16,6 +18,7 @@ export function useProducts() {
   // PAGINATION
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
 
+  // QUERY
   const {
     isLoading,
     error,
@@ -25,7 +28,21 @@ export function useProducts() {
     queryFn: () => getProducts({ filter, page }),
   });
 
-  console.log(products);
+  // PRE-FETCHING
+  const pageCount = count ? Math.ceil(count / PAGE_SIZE) : 0;
+  if (page < pageCount) {
+    queryClient.prefetchQuery({
+      queryKey: ["products", filter, page + 1],
+      queryFn: () => getProducts({ filter, page: page + 1 }),
+    });
+  }
+
+  if (page > 1) {
+    queryClient.prefetchQuery({
+      queryKey: ["products", filter, page - 1],
+      queryFn: () => getProducts({ filter, page: page - 1 }),
+    });
+  }
 
   return { products, isLoading, error, count };
 }
