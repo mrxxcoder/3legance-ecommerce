@@ -1,25 +1,53 @@
-import { HiOutlineHeart } from "react-icons/hi2";
+import { HiChevronLeft, HiChevronRight, HiOutlineHeart } from "react-icons/hi2";
 import Button from "./Button";
 import { useProduct } from "../features/products/useProduct";
 import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
+import ButtonIcon from "./ButtonIcon";
+import { useState } from "react";
 
 function ProductLayout() {
   const { data: product, isLoading } = useProduct();
+  const [curImage, setCurImage] = useState(0);
 
   if (isLoading || !product) {
     return <ProductDetailsSkeleton />;
   }
 
+  function handleNextImage() {
+    if (curImage === 2) return;
+    setCurImage((cur) => cur + 1);
+    console.log("NEXT");
+  }
+
+  function handlePrevImage() {
+    if (curImage === 0) return;
+    setCurImage((cur) => cur - 1);
+    console.log("PREV");
+  }
+
   return (
     <div className="container mx-auto flex flex-col md:flex-row gap-16 my-16 p-8">
       <div className="space-y-4">
-        <div className="bg-[#F3F5F7]">
+        <div className="bg-[#F3F5F7] relative">
+          <ButtonIcon
+            className="absolute left-2 top-1/2 z-30"
+            onClick={handlePrevImage}
+          >
+            <HiChevronLeft size={24} />
+          </ButtonIcon>
           <img
-            src={product.images[0]}
+            src={product.images[curImage]}
             alt={product.title}
             className="max-w-full md:max-w-[548px] mix-blend-multiply"
           />
+          <ButtonIcon
+            className="absolute right-2 top-1/2 z-30"
+            onClick={handleNextImage}
+          >
+            <HiChevronRight size={24} />
+          </ButtonIcon>
         </div>
+
         <div className="gap-4 hidden md:flex md:justify-between bg-[#F3F5F7]">
           <img
             src={product.images[0]}
