@@ -9,7 +9,7 @@ export function useLogin() {
     mutationFn: (credantials: { email: string; password: string }) =>
       loginApi(credantials),
     onSuccess: () => {
-      navigate("/checkout", { replace: true });
+      navigate("/", { replace: true });
     },
     onError: (err) => {
       console.log("ERROR", err);

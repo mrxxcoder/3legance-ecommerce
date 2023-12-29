@@ -6,11 +6,9 @@ import { useLogin } from "./useLogin";
 import Spinner from "../../ui/Spinner";
 import Input from "../../ui/Input";
 
-interface IProps {}
-
-function SigninForm({}: IProps) {
+function SigninForm() {
   const [email, setEmail] = useState("ahmed@example.com");
-  const [password, setPassword] = useState("00000000");
+  const [password, setPassword] = useState("aaaaaaaa");
   const { login, isLoading } = useLogin();
 
   function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
