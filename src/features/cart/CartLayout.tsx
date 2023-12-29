@@ -14,7 +14,7 @@ const stripePromise = loadStripe(
 );
 
 function CartLayout() {
-  const [stripeError, setStripeError] = useState(null);
+  const [stripeError, setStripeError] = useState<StripeError | null>(null);
   const [loading, setLoading] = useState(false);
 
   const products = useSelector((state: RootState) => state.cart.products);
@@ -44,7 +44,7 @@ function CartLayout() {
 
     if (result.error) {
       setLoading(false);
-      setStripeError(result.error as StripeError); // Type assertion as StripeError
+      setStripeError(result.error); // Type assertion as StripeError
     }
   }
 

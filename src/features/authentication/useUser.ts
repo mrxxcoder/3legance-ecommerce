@@ -8,5 +8,10 @@ export function useUser() {
     queryFn: getCurrentUser,
   });
 
-  return { user, isLoading, isAuthenticated: user?.role === "authenticated" };
+  const isAuthenticated = user?.role === "authenticated";
+
+  const email = user?.email;
+  const currentFullName = user?.user_metadata?.name;
+
+  return { user, isLoading, isAuthenticated, email, currentFullName };
 }

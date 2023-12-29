@@ -9,10 +9,7 @@ interface IProps {
 function FormRow({ label, children, error }: IProps) {
   return (
     <div className="flex flex-col space-y-1">
-      <label
-        htmlFor={children?.props.id}
-        className="uppercase font-medium text-gray-600 text-sm"
-      >
+      <label className="uppercase font-medium text-gray-600 text-sm">
         {label}
       </label>
       {children}

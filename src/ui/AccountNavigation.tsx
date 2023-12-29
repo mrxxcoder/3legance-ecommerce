@@ -6,7 +6,8 @@ import { useUser } from "../features/authentication/useUser";
 
 function AccountNavigation() {
   const { user } = useUser();
-  const { fullName, avatar } = user.user_metadata;
+  const fullName = user?.user_metadata?.fullName;
+  const avatar = user?.user_metadata?.avatar;
 
   return (
     <div className="p-8 bg-[#F3F5F7] flex flex-col gap-8 max-h-[450px]">

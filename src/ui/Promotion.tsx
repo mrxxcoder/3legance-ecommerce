@@ -1,9 +1,7 @@
 import cta from "../assets/images/cta.png";
 import Button from "./Button";
 
-interface IProps {}
-
-function Promotion({}: IProps) {
+function Promotion() {
   return (
     <div className="py-24 flex flex-col lg:flex-row">
       <img
@@ -24,7 +22,9 @@ function Promotion({}: IProps) {
         <p className="text-3xl md:text-4xl font-semibold mb-16">
           Offer expires in 4 days!
         </p>
-        <Button>Shop now</Button>
+        <Button width="w-fit" variant="primary">
+          Shop now
+        </Button>
       </div>
     </div>
   );

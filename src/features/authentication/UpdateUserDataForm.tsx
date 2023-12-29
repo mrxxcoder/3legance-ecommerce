@@ -6,12 +6,7 @@ import { useUser } from "./useUser";
 import { useUpdateUser } from "./useUpdateUser";
 
 function UpdateUserDataForm() {
-  const {
-    user: {
-      email,
-      user_metadata: { name: currentFullName },
-    },
-  } = useUser();
+  const { email, currentFullName } = useUser();
 
   const { updateUser, isUpdating } = useUpdateUser();
 
