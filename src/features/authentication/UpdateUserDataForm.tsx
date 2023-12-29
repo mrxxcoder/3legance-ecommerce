@@ -30,7 +30,6 @@ function UpdateUserDataForm() {
         },
       }
     );
-    console.log(currentFullName);
   }
   return (
     <form className="space-y-5 bg-gray-50 p-8" onSubmit={handleSubmit}>
