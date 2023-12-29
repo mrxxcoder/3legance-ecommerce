@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
 import FormRow from "../../ui/FormRow";
 import Button from "../../ui/Button";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { useSignup } from "./useSignup";
+import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import Spinner from "../../ui/Spinner";
 import Input from "../../ui/Input";
-
-// Email regex: /\S+@\S+\.\S+/
+import { useSignup } from "./useSignup";
 
 type Inputs = {
   fullName: string;
@@ -15,11 +13,12 @@ type Inputs = {
 };
 
 function SignupForm() {
-  const { register, handleSubmit, formState, reset } = useForm<Inputs>();
+  const { control, handleSubmit, formState, reset } = useForm<Inputs>();
   const { errors } = formState;
   const { signup, isLoading } = useSignup();
 
   const onSubmit: SubmitHandler<Inputs> = ({ fullName, email, password }) => {
+    console.log("SIGNED");
     signup({ fullName, email, password }, { onSettled: () => reset() });
   };
 
@@ -34,45 +33,68 @@ function SignupForm() {
       </p>
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
         <FormRow label="Your name" error={errors.fullName?.message}>
-          <Input
-            type="text"
-            disabled={isLoading}
-            id="fullName"
-            placeholder="Your name"
-            {...register("fullName", { required: "This field is required" })}
+          <Controller
+            name="fullName"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="text"
+                disabled={isLoading}
+                id="fullName"
+                placeholder="Your name"
+                {...field}
+              />
+            )}
+            rules={{ required: "This field is required" }}
           />
         </FormRow>
 
         <FormRow label="Email address" error={errors?.email?.message}>
-          <Input
-            type="email"
-            disabled={isLoading}
-            id="email"
-            placeholder="Email address"
-            {...register("email", {
+          <Controller
+            name="email"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="email"
+                disabled={isLoading}
+                id="email"
+                placeholder="Email address"
+                {...field}
+              />
+            )}
+            rules={{
               required: "This field is required",
               pattern: {
                 value: /\S+@\S+\.\S+/,
                 message: "Please provide a valid email address.",
               },
-            })}
+            }}
           />
         </FormRow>
+
         <FormRow label="Password" error={errors?.password?.message}>
-          <Input
-            type="password"
-            disabled={isLoading}
-            id="password"
-            placeholder="Password"
-            {...register("password", {
+          <Controller
+            name="password"
+            control={control}
+            render={({ field }) => (
+              <Input
+                type="password"
+                disabled={isLoading}
+                id="password"
+                placeholder="Password"
+                {...field}
+              />
+            )}
+            rules={{
               required: "This field is required",
               minLength: {
                 value: 8,
                 message: "Password needs a minimum of 8 characters",
               },
-            })}
+            }}
           />
         </FormRow>
+
         <Button variant="primary" width="w-full" disabled={isLoading}>
           {isLoading ? <Spinner /> : "Sign Up"}
         </Button>

@@ -14,7 +14,6 @@ function UpdatePasswordForm() {
   function onSubmit(data: FieldValues) {
     const { password } = data;
     updateUser({ password });
-    console.log("UPDATED");
   }
 
   return (
