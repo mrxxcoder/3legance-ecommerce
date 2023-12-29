@@ -17,8 +17,9 @@ function CartLayout() {
   const [stripeError, setStripeError] = useState<StripeError | null>(null);
   const [loading, setLoading] = useState(false);
 
+  console.log(stripeError);
+
   const products = useSelector((state: RootState) => state.cart.products);
-  // const navigate = useNavigate();
 
   async function handleClick() {
     setLoading(true);
@@ -34,7 +35,7 @@ function CartLayout() {
       lineItems: [
         {
           price: "price_1OSKAfFaDT3Re3v98Ne1gft0",
-          quantity: 1,
+          quantity: products.length,
         },
       ],
       mode: "payment",

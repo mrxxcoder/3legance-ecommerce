@@ -45,9 +45,6 @@ function FlyoutCart({ flyoutCartOpen, setFlyoutCartOpen }: IProps) {
               </p>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <Button width="w-full" variant="primary">
-                Checkout
-              </Button>
               <Button
                 width="w-fit"
                 variant="outline"
