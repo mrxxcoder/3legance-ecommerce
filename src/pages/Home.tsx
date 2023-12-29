@@ -12,7 +12,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <ProductsLayout title="New Arrivals" />
+      <ProductsLayout title="New Arrivals" length={4} />
       <CollectionsLayout />
       <BestSeller />
       <Promotion />

@@ -9,7 +9,7 @@ import Input from "../../ui/Input";
 // Email regex: /\S+@\S+\.\S+/
 
 type Inputs = {
-  name: string;
+  fullName: string;
   email: string;
   password: string;
 };
@@ -19,8 +19,8 @@ function SignupForm() {
   const { errors } = formState;
   const { signup, isLoading } = useSignup();
 
-  const onSubmit: SubmitHandler<Inputs> = ({ name, email, password }) => {
-    signup({ name, email, password }, { onSettled: () => reset() });
+  const onSubmit: SubmitHandler<Inputs> = ({ fullName, email, password }) => {
+    signup({ fullName, email, password }, { onSettled: () => reset() });
   };
 
   return (
@@ -33,13 +33,13 @@ function SignupForm() {
         </Link>
       </p>
       <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        <FormRow label="Your name" error={errors?.name?.message}>
+        <FormRow label="Your name" error={errors.fullName?.message}>
           <Input
             type="text"
             disabled={isLoading}
-            id="name"
+            id="fullName"
             placeholder="Your name"
-            {...register("name", { required: "This field is required" })}
+            {...register("fullName", { required: "This field is required" })}
           />
         </FormRow>
 

@@ -3,15 +3,15 @@ import {
   HiMiniPlusSmall,
   HiMiniXMark,
 } from "react-icons/hi2";
-import ButtonIcon from "./ButtonIcon";
-import { IProduct } from "../interfaces";
+import ButtonIcon from "../../ui/ButtonIcon";
+import { IProduct } from "../../interfaces";
 import { useDispatch, useSelector } from "react-redux";
 import {
   decrementQuantity,
   incrementQuantity,
   removeProduct,
-} from "../store/cart/cartSlice";
-import { RootState } from "../store/store";
+} from "../../store/cart/cartSlice";
+import { RootState } from "../../store/store";
 
 interface IProps {
   product: IProduct;

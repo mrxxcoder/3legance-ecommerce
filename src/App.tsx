@@ -10,11 +10,11 @@ import Account from "./pages/Account";
 import AccountForm from "./ui/AccountForm";
 import WishlistTable from "./features/wishlist/WishlistTable";
 import OrdersTable from "./features/orders/OrdersTable";
-import Checkout from "./pages/Checkout";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
 import { Toaster } from "react-hot-toast";
 import ProtectedRoute from "./ui/ProtectedRoute";
+import OrderComplete from "./pages/OrderComplete";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,15 +36,8 @@ function App() {
             <Route path="shop" element={<Products />} />
             <Route path="shop/:productId" element={<Product />} />
             <Route path="cart" element={<Cart />} />
+            <Route path="/complete" element={<OrderComplete />} />
 
-            <Route
-              path="checkout"
-              element={
-                <ProtectedRoute>
-                  <Checkout />
-                </ProtectedRoute>
-              }
-            />
             <Route
               path="account"
               element={

@@ -1,21 +1,20 @@
 import { NavLink } from "react-router-dom";
-import profile from "../assets/images/profile.jpg";
-import Button from "./Button";
-import ButtonIcon from "./ButtonIcon";
-import { HiOutlineCamera } from "react-icons/hi2";
+import defaultUser from "../assets/images/default-user.jpg";
+
 import Logout from "../features/authentication/Logout";
+import { useUser } from "../features/authentication/useUser";
 
 function AccountNavigation() {
+  const { user } = useUser();
+  const { fullName, avatar } = user.user_metadata;
+
   return (
     <div className="p-8 bg-[#F3F5F7] flex flex-col gap-8 max-h-[450px]">
       <div className="flex flex-col justify-center items-center gap-2">
         <div className="relative">
-          <img src={profile} className="w-20 h-20 rounded-full" />
-          <ButtonIcon className="absolute bg-black p-1 rounded-full border-2 border-white -right-2 bottom-0">
-            <HiOutlineCamera size={24} style={{ color: "white" }} />
-          </ButtonIcon>
+          <img src={avatar || defaultUser} className="w-20 h-20 rounded-full" />
         </div>
-        <h2 className="text-lg font-semibold">Ahmed Samy</h2>
+        <h2 className="text-lg font-semibold">{fullName}</h2>
       </div>
       <ul className="space-y-4">
         <li className="w-full text-gray-500 font-medium">

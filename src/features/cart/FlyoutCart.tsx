@@ -1,12 +1,12 @@
 import { HiMiniXMark } from "react-icons/hi2";
-import ButtonIcon from "./ButtonIcon";
+import ButtonIcon from "../../ui/ButtonIcon";
 import CartItem from "./CartItem";
-import Button from "./Button";
+import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
-import EmptyCart from "./EmptyCart";
-import { calculateTotalPrice } from "../utils";
+import { RootState } from "../../store/store";
+import EmptyCart from "../../ui/EmptyCart";
+import { calculateTotalPrice } from "../../utils";
 interface IProps {
   flyoutCartOpen: boolean;
   setFlyoutCartOpen: (value: boolean) => void;

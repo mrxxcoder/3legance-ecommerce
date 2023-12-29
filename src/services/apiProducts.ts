@@ -5,12 +5,12 @@ export async function getProducts({
   filter,
   page,
 }: {
-  filter: { field: string; value: string } | null;
+  filter?: { field: string; value: string } | null;
   page: number;
 }) {
   let query = supabase
     .from("products")
-    .select("*, categories(id,title)", { count: "exact" });
+    .select("*, categories!categories(*)", { count: "exact" });
 
   //FILTER
   if (filter) {

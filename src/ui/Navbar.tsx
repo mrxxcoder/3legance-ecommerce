@@ -5,7 +5,7 @@ import { HiBars3 } from "react-icons/hi2";
 import Menu from "./Menu";
 import { useState } from "react";
 import ButtonIcon from "./ButtonIcon";
-import FlyoutCart from "./FlyoutCart";
+import FlyoutCart from "../features/cart/FlyoutCart";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
@@ -36,9 +36,6 @@ function Navbar({ backgroundColor = "transparent" }: IProps) {
           </li>
           <li>
             <Link to="/shop">Shop</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact Us</Link>
           </li>
         </ul>
 

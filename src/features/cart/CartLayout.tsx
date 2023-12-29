@@ -1,14 +1,52 @@
 import { useSelector } from "react-redux";
-import Button from "./Button";
+import Button from "../../ui/Button";
 import CartItem from "./CartItem";
-import { RootState } from "../store/store";
-import EmptyCart from "./EmptyCart";
-import { calculateTotalPrice } from "../utils";
-import { useNavigate } from "react-router-dom";
+import { RootState } from "../../store/store";
+import EmptyCart from "../../ui/EmptyCart";
+import { calculateTotalPrice } from "../../utils";
+import { StripeError, loadStripe } from "@stripe/stripe-js";
+
+import { useState } from "react";
+import Spinner from "../../ui/Spinner";
+
+const stripePromise = loadStripe(
+  "pk_test_51OBQJ1FaDT3Re3v9Jd1JOgvdybmdXc01ge9OaytcM442DbzbN9jsjRYMvATL5ovZ13HiHztMEGGjO2KO9SIcqrXh009aC2jJLt"
+);
 
 function CartLayout() {
+  const [stripeError, setStripeError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const products = useSelector((state: RootState) => state.cart.products);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  async function handleClick() {
+    setLoading(true);
+    const stripe = await stripePromise;
+    if (!stripe) {
+      // Handle the case where stripePromise did not resolve to a valid Stripe instance
+      setLoading(false);
+      // Add appropriate error handling or logging
+      return;
+    }
+
+    const result = await stripe.redirectToCheckout({
+      lineItems: [
+        {
+          price: "price_1OSKAfFaDT3Re3v98Ne1gft0",
+          quantity: 1,
+        },
+      ],
+      mode: "payment",
+      cancelUrl: window.location.origin,
+      successUrl: `${window.location.origin}/complete`,
+    });
+
+    if (result.error) {
+      setLoading(false);
+      setStripeError(result.error as StripeError); // Type assertion as StripeError
+    }
+  }
 
   if (products.length === 0) {
     return (
@@ -87,10 +125,10 @@ function CartLayout() {
           <Button
             width="w-full"
             variant="primary"
-            onClick={() => navigate("/checkout")}
+            onClick={handleClick}
             disabled={products.length === 0}
           >
-            Checkout
+            {loading ? <Spinner /> : "Checkout"}
           </Button>
         </div>
       </div>

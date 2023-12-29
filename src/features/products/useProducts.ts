@@ -7,13 +7,13 @@ export function useProducts() {
   const queryClient = useQueryClient();
   const [searchParams] = useSearchParams();
 
-  //FILTER
-  const filterValue = searchParams.get("categories");
+  // //FILTER
+  // const filterValue = searchParams.get("categories");
 
-  const filter =
-    !filterValue || filterValue === "all"
-      ? null
-      : { field: "categories.title", value: filterValue };
+  // const filter =
+  //   !filterValue || filterValue === "all"
+  //     ? null
+  //     : { field: "categories.title", value: filterValue };
 
   // PAGINATION
   const page = !searchParams.get("page") ? 1 : Number(searchParams.get("page"));
@@ -24,23 +24,23 @@ export function useProducts() {
     error,
     data: { data: products, count } = { data: [], count: null },
   } = useQuery({
-    queryKey: ["products", filter, page],
-    queryFn: () => getProducts({ filter, page }),
+    queryKey: ["products", page],
+    queryFn: () => getProducts({ page }),
   });
 
   // PRE-FETCHING
   const pageCount = count ? Math.ceil(count / PAGE_SIZE) : 0;
   if (page < pageCount) {
     queryClient.prefetchQuery({
-      queryKey: ["products", filter, page + 1],
-      queryFn: () => getProducts({ filter, page: page + 1 }),
+      queryKey: ["products", page + 1],
+      queryFn: () => getProducts({ page: page + 1 }),
     });
   }
 
   if (page > 1) {
     queryClient.prefetchQuery({
-      queryKey: ["products", filter, page - 1],
-      queryFn: () => getProducts({ filter, page: page - 1 }),
+      queryKey: ["products", page - 1],
+      queryFn: () => getProducts({ page: page - 1 }),
     });
   }
 

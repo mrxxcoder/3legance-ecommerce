@@ -1,4 +1,4 @@
-import CartLayout from "../ui/CartLayout";
+import CartLayout from "../features/cart/CartLayout";
 
 function Cart() {
   return (
