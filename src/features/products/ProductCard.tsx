@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 
 import { addProduct } from "../../store/cart/cartSlice";
 import { addItem } from "../../store/wishlist/wishlistSlice";
+import toast from "react-hot-toast";
 
 interface IProps {
   product: IProduct;
@@ -16,6 +17,16 @@ function ProductCard({ product }: IProps) {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
+
+  function handleAddToCart() {
+    dispatch(addProduct(product));
+    toast.success("Product successfully added to cart");
+  }
+
+  function handleAddToWishlist() {
+    dispatch(addItem(product));
+    toast.success("Product successfully added to wishlist");
+  }
 
   return (
     <div className="flex flex-col space-y-3">
@@ -28,7 +39,7 @@ function ProductCard({ product }: IProps) {
             <div className="flex space-x-1">
               <ButtonIcon
                 className="bg-white p-2 rounded-full shadow-md"
-                onClick={() => dispatch(addItem(product))}
+                onClick={handleAddToWishlist}
               >
                 <HiOutlineHeart size={20} />
               </ButtonIcon>
@@ -43,11 +54,7 @@ function ProductCard({ product }: IProps) {
           </div>
 
           <div className="self-center space-y-2">
-            <Button
-              variant="primary"
-              width="w-full"
-              onClick={() => dispatch(addProduct(product))}
-            >
+            <Button variant="primary" width="w-full" onClick={handleAddToCart}>
               Add to cart
             </Button>
           </div>
