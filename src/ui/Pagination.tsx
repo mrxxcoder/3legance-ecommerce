@@ -28,7 +28,7 @@ function Pagination({ count }: IProps) {
 
   if (pageCount <= 1) return null;
   return (
-    <div className="w-full flex items-center justify-between">
+    <div className="w-full flex flex-col gap-y-2 md:flex-row items-center justify-between">
       <p className="text-md ml-2">
         Showing{" "}
         <span className="font-semibold">

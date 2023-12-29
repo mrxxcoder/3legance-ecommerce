@@ -21,7 +21,7 @@
 }
 
 /* Menu.css */
-.menu {
+.flyout-menu {
   /* your existing styles */
 
   /* initial position */
@@ -29,7 +29,7 @@
   transition: transform 0.3s ease-in-out;
 }
 
-.menu.open {
+.flyout-menu.open {
   /* slide in */
   transform: translateX(0);
 }

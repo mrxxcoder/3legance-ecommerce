@@ -47,7 +47,7 @@ function FlyoutCart({ flyoutCartOpen, setFlyoutCartOpen }: IProps) {
             <div className="flex flex-col items-center gap-2">
               <Button
                 width="w-fit"
-                variant="outline"
+                variant="primary"
                 onClick={() => {
                   navigate("/cart");
                   setFlyoutCartOpen(false);
