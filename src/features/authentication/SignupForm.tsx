@@ -18,7 +18,6 @@ function SignupForm() {
   const { signup, isLoading } = useSignup();
 
   const onSubmit: SubmitHandler<Inputs> = ({ fullName, email, password }) => {
-    console.log("SIGNED");
     signup({ fullName, email, password }, { onSettled: () => reset() });
   };
 
