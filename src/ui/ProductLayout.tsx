@@ -4,10 +4,16 @@ import { useProduct } from "../features/products/useProduct";
 import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
 import ButtonIcon from "./ButtonIcon";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../store/cart/cartSlice";
+import { addItem } from "../store/wishlist/wishlistSlice";
+import toast from "react-hot-toast";
 
 function ProductLayout() {
   const { data: product, isLoading } = useProduct();
   const [curImage, setCurImage] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   if (isLoading || !product) {
     return <ProductDetailsSkeleton />;
@@ -23,6 +29,25 @@ function ProductLayout() {
     if (curImage === 0) return;
     setCurImage((cur) => cur - 1);
     console.log("PREV");
+  }
+
+  function handleDecreaseQuantity() {
+    if (quantity === 1) return;
+    setQuantity((prev) => prev - 1);
+  }
+
+  function handleIncreaseQuantity() {
+    setQuantity((prev) => prev + 1);
+  }
+
+  function handleAddToCart() {
+    dispatch(addProduct({ ...product, quantity }));
+    setQuantity(1);
+    toast.success("Product successfully added to cart");
+  }
+  function handleAddToWishlist() {
+    dispatch(addItem(product));
+    toast.success("Product successfully added to wishlist");
   }
 
   return (
@@ -77,15 +102,26 @@ function ProductLayout() {
         </div>
         <div className="grid grid-cols-[6rem_1fr] md:grid-cols-[10rem_1fr] grid-rows-2 gap-x-6 gap-y-3">
           <div className="bg-gray-100 flex items-center justify-center gap-4 rounded-lg">
-            <span className="text-2xl font-medium">-</span>
-            <span className="text-xl font-medium">1</span>
-            <span className="text-2xl font-medium">+</span>
+            <ButtonIcon
+              className="text-2xl font-medium"
+              onClick={handleDecreaseQuantity}
+            >
+              -
+            </ButtonIcon>
+            <span className="text-xl font-medium">{quantity}</span>
+            <ButtonIcon
+              className="text-2xl font-medium"
+              onClick={handleIncreaseQuantity}
+            >
+              +
+            </ButtonIcon>
           </div>
           <div>
             <Button
               variant="secondary"
               width="w-full"
               style={{ display: "flex", gap: "1rem", justifyContent: "center" }}
+              onClick={handleAddToWishlist}
             >
               <span>
                 <HiOutlineHeart size={24} />
@@ -94,7 +130,7 @@ function ProductLayout() {
             </Button>
           </div>
           <div className="row-start-2 col-start-1 col-end-3">
-            <Button variant="primary" width="w-full">
+            <Button variant="primary" width="w-full" onClick={handleAddToCart}>
               Add to cart
             </Button>
           </div>

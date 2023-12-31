@@ -20,7 +20,10 @@ const cartSlice = createSlice({
       if (index !== -1) {
         state.products[index].quantity += 1;
       } else {
-        state.products.push({ ...action.payload, quantity: 1 });
+        const quantityExist = action.payload.quantity ? true : false;
+        quantityExist
+          ? state.products.push({ ...action.payload })
+          : state.products.push({ ...action.payload, quantity: 1 });
       }
     },
     removeProduct: (state, action) => {
